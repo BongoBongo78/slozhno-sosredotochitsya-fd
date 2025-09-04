@@ -1,4 +1,49 @@
 /*
-  Переменные для вашего проекта
-  и их переопределение под различные устройства
+  Переменные для проекта и их переопределение под различные устройства
+  Базовые значения - светлая тема, переопределение через медиа-запрос для тёмной темы
 */
+
+:root {
+  /* ЦВЕТОВАЯ СХЕМА (Светлая тема по умолчанию) */
+  
+  --bg-color: #FFF1F7; /* фоновый цвет страницы */
+  --page-bg-image: url("/images/cover-image-light.png");
+  --accent-color: #353430; /* акцентный цвет */
+  --hero-title-color: #FFC2E6; /* цвет главного заголовка (hero) */
+  --text-color: #353430; /* основной цвет текста */
+  
+  /* Декоративные элементы */
+  --heading-decor-color: #000028; /* текст на цветном фоне */
+  --heading-decor-bg: #FF8DCB; /* фон декоративных элементов */
+  --link-shadow-color: #FF8DCB; /* тень ссылок */
+  --hero-title-shadow-color: #FF8DCB; /* тень главного заголовка (hero) */
+  --corners-color: #353430; /* цвет декоративных уголков */
+  
+  /* Элементы меню переключения тем */
+  --menu-button-color: var(--text-color);
+  --menu-button-border-color: var(--text-color);
+}
+
+/* АВТОМАТИЧЕСКАЯ ТЁМНАЯ ТЕМА */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Цветовая схема тёмной темы */
+    --bg-color: #000028;
+    --page-bg-image: url("/images/cover-image-dark.png");
+    --accent-color: #FF0070;
+    --hero-title-color: #DB00FF;
+    --text-color: #F1B2CE;
+    
+    /* Декоративные элементы в тёмной теме */
+    --heading-decor-color: #000028;
+    --heading-decor-bg: #FF0070;
+    --link-shadow-color: var(--accent-color);
+    --hero-title-shadow-color: #FF0070; /* тень главного заголовка (hero) */
+    --corners-color: #FF0070;
+    
+    /* Элементы меню в тёмной теме */
+    --menu-button-color: var(--accent-color);
+    --menu-button-border-color: var(--accent-color);
+  }
+}

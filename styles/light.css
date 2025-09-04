@@ -1,12 +1,56 @@
-/*
-  Специально для светлой темы при наличии класса.
-  Здесь окажутся стили, которые нужно переопределить принудительно,
-  переключая тему
-*/
 
-:root.theme-light {
-  /* сохраните этот селектор в приведённом виде.
-    Так стили написанные ниже будут иметь больший вес,
-    чем стили в медиазапросе предпочтений пользователя
-  */
+/* ПРИНУДИТЕЛЬНАЯ СВЕТЛАЯ ТЕМА */
+
+:root.theme-light {  
+  /* Цветовая схема светлой темы */
+  --bg-color: #FFF1F7;
+  --page-bg-image: url("/images/cover-image-light.png");
+  --accent-color: #353430;
+  --hero-title-color: #FFC2E6;
+  --text-color: #353430;
+  
+  /* Декоративные элементы */
+  --heading-decor-color: #353430;
+  --heading-decor-bg: #FF8DCB;
+  --link-shadow-color: #FF8DCB;
+  --hero-title-shadow-color: #FF8DCB; /* тень главного заголовка */
+  --corners-color: #353430;
+  
+  /* Элементы меню переключения тем */
+  --menu-button-color: var(--text-color);
+  --menu-button-border-color: var(--text-color);
+}
+
+/* СПЕЦИФИЧНЫЕ СТИЛИ ДЛЯ СВЕТЛОЙ ТЕМЫ */
+
+/* Переключатель темы: убеждаемся что цвета применяются корректно */
+.theme-light .header__theme-menu-button {
+  color: var(--menu-button-color);
+}
+
+.theme-light .header__theme-menu-button:hover:not([disabled]) {
+  border-color: color-mix(in srgb, var(--menu-button-border-color) 40%, transparent);
+}
+
+.theme-light .header__theme-menu-button:focus-visible {
+  border-color: transparent;
+  border-bottom-color: var(--menu-button-border-color);
+}
+
+.theme-light .header__theme-menu-button_active,
+.theme-light .header__theme-menu-button[disabled] {
+  border-color: var(--menu-button-border-color);
+}
+
+/* Контент: цвета заголовков и текста в светлой теме */
+.theme-light .main h2 { 
+  color: #353430; 
+}
+
+.theme-light .main h3 { 
+  color: #353430; 
+}
+
+.theme-light .main p { 
+  color: #353430; 
 }
