@@ -3,36 +3,43 @@
 :root.theme-dark {
   /* Цветовая схема тёмной темы */
   --bg-color: #000028;
-  --page-bg-image: url("/images/cover-image-dark.png");
+  --page-bg-image: url("../images/cover-image-dark.png");
   --accent-color: #FF0070;
   --hero-title-color: #DB00FF;
   --text-color: #F1B2CE;
-  
+
   /* Декоративные элементы */
   --heading-decor-color: #000028;
   --heading-decor-bg: #FF0070;
   --link-shadow-color: var(--accent-color);
-  --hero-title-shadow-color: #FF0070; /* тень главного заголовка */
+  --hero-title-shadow-color: #FF0070;
+  /* тень главного заголовка */
   --corners-color: #FF0070;
-  
+
   /* Элементы меню переключения тем */
   --menu-button-color: var(--accent-color);
   --menu-button-border-color: var(--accent-color);
 }
 
-/* СПЕЦИФИЧНЫЕ СТИЛИ ДЛЯ ТЁМНОЙ ТЕМЫ */
+/* АВТОМАТИЧЕСКАЯ ТЁМНАЯ ТЕМА (если предпочитается системой и не принудительно светлая) */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light) {
+    /* Цветовая схема тёмной темы */
+    --bg-color: #000028;
+    --page-bg-image: url("../images/cover-image-dark.png");
+    --accent-color: #FF0070;
+    --hero-title-color: #DB00FF;
+    --text-color: #F1B2CE;
 
-/* REC-метка: показываем только в тёмной теме */
-.theme-dark .header__rec {
-  display: inline-block;
-  color: var(--accent-color);
-}
+    /* Декоративные элементы в тёмной теме */
+    --heading-decor-color: #000028;
+    --heading-decor-bg: #FF0070;
+    --link-shadow-color: var(--accent-color);
+    --hero-title-shadow-color: #FF0070; /* тень главного заголовка (hero) */
+    --corners-color: #FF0070;
 
-/* Контент: цвета заголовков в тёмной теме */
-.theme-dark .main h2 { 
-  color: #FF0070; 
-}
-
-.theme-dark .main h3 { 
-  color: #000028; 
+    /* Элементы меню в тёмной теме */
+    --menu-button-color: var(--accent-color);
+    --menu-button-border-color: var(--accent-color);
+  }
 }
