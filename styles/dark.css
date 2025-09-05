@@ -35,11 +35,17 @@
     --heading-decor-color: #000028;
     --heading-decor-bg: #FF0070;
     --link-shadow-color: var(--accent-color);
-    --hero-title-shadow-color: #FF0070; /* тень главного заголовка (hero) */
+    --hero-title-shadow-color: #FF0070;
+    /* тень главного заголовка (hero) */
     --corners-color: #FF0070;
 
     /* Элементы меню в тёмной теме */
     --menu-button-color: var(--accent-color);
     --menu-button-border-color: var(--accent-color);
+  }
+
+  /* Показываем REC при автоматической тёмной теме (если не принудительно светлая) */
+  :root:not(.theme-light) .header__rec {
+    display: inline-block;
   }
 }

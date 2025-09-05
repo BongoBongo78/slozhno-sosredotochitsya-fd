@@ -111,8 +111,6 @@
   margin-bottom: 10px;
 }
 
-/* (obsolete) .gallery-section__title removed; title is now inside .gallery as .gallery__title */
-
 .main p {
   font-weight: 400;
   color: var(--text-color);
@@ -163,7 +161,7 @@
     "subtitle";
   position: relative;
   /* для псевдоэлементов уголков и REC */
-  margin-bottom: 60px;
+  margin-bottom: 55px;
   /* Адаптивные отступы */
   padding: 20px 10px;
   /* мобильные отступы по умолчанию */
@@ -203,11 +201,9 @@
 }
 
 .header__theme-menu-button:hover:not([disabled]) {
-  border-color: color-mix(
-    in srgb,
-    var(--menu-button-border-color) 40%,
-    transparent
-  );
+  border-color: color-mix(in srgb,
+      var(--menu-button-border-color) 40%,
+      transparent);
 }
 
 .header__theme-menu-button:focus {
@@ -289,13 +285,6 @@
   box-shadow: 0 0 4px 2px var(--accent-color);
 }
 
-/* Показываем REC при автоматической тёмной теме (если не принудительно светлая) */
-@media (prefers-color-scheme: dark) {
-  :root:not(.theme-light) .header__rec {
-    display: inline-block;
-  }
-}
-
 /* Показываем REC при принудительной тёмной теме (переключатель тем) */
 .theme-dark .header__rec {
   display: inline-block;
@@ -329,25 +318,33 @@
 /* СПЕЦИАЛЬНЫЕ СЕКЦИИ КОНТЕНТА */
 
 /* Первая секция: базовые стили */
-.section-pochemu-slozhno {
+.section-why-hard {
   align-items: start;
 }
 
 /* Правая часть первой секции */
-.section-pochemu-slozhno__grid {
+.section-why-hard__grid {
   display: contents;
   /* на мобильной сбрасываем грид */
 }
 
 /* Отступ между h3 и h4 в секции советов */
-.section-sovety__grid {
+.section-tips__grid {
   display: contents;
   /* на мобильной сбрасываем грид */
 }
 
-.section-sovety__grid
-  > .content-section__heading
-  + .content-section__subheading {
+/* Секция причин: базовые (мобильные) стили — без собственной сетки,
+   элементы рендерятся потоком в одну колонку */
+.section-distractions__grid {
+  display: contents;
+}
+
+.section-distractions__item {
+  display: contents;
+}
+
+.section-tips__grid>.content-section__heading+.content-section__subheading {
   margin-top: 10px;
 }
 
@@ -392,6 +389,7 @@
 
 .footer {
   height: 100vh;
+  min-height: 668px;
   margin: 0 auto;
   position: relative;
   display: grid;
@@ -418,10 +416,12 @@
 /* МОБИЛЬНАЯ ВЕРСИЯ (до 767px) */
 @media (max-width: 767px) {
   .header {
-    min-height: 668px; /* минимальная высота для мобильного хедера */
+    min-height: 668px;
+    /* минимальная высота для мобильного хедера */
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr; /* весь хедер — три строки */
+    grid-template-rows: 1fr 1fr 1fr;
+    /* весь хедер — три строки */
     grid-template-areas:
       "menu"
       "title"
@@ -436,18 +436,18 @@
   }
 
   /* Отступы между секциями (мобилка): отдельно для каждой секции. Толкаем секции вниз */
-  main.main .section-pochemu-slozhno,
-  .main .section-pochemu-slozhno {
+  main.main .section-why-hard,
+  .main .section-why-hard {
     margin-bottom: 28px;
   }
 
-  main.main .section-prichiny,
-  .main .section-prichiny {
+  main.main .section-distractions,
+  .main .section-distractions {
     margin-bottom: 26px;
   }
 
-  main.main .section-sovety,
-  .main .section-sovety {
+  main.main .section-tips,
+  .main .section-tips {
     margin-bottom: 25px;
   }
 
@@ -477,18 +477,23 @@
   .gallery__title {
     grid-row: 1;
   }
+
   .gallery__item_name_sunset {
     grid-row: 2;
   }
+
   .gallery__item_name_ice-cream {
     grid-row: 3;
   }
+
   .gallery__item_name_tape {
     grid-row: 4;
   }
+
   .gallery__item_name_books {
     grid-row: 5;
   }
+
   .gallery__item_name_street {
     grid-row: 6;
   }
@@ -497,7 +502,8 @@
   header .header__hero-title {
     margin: 0;
     margin-block: 0;
-    line-height: 0.83; /* плотнее межстрочный интервал для двух строк */
+    line-height: 0.83;
+    /* плотнее межстрочный интервал для двух строк */
   }
 
   /* Заголовки секций: уменьшаем нижний внутренний отступ до 10px на мобилке */
@@ -520,162 +526,84 @@
   }
 
   .footer {
-    min-height: 668px; /* минимальная высота для мобильного футера */
+    min-height: 668px;
+    /* минимальная высота для мобильного футера */
   }
 }
 
-/* ПЛАНШЕТНАЯ ВЕРСИЯ (768px - 1023px) */
+/* ОБЩИЕ ПРАВИЛА ДЛЯ ШИРИНЫ 768px И БОЛЕЕ */
+@media (min-width: 768px) {
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Увеличенные отступы для планшета */
+  /* Увеличенные отступы основного контейнера */
   .main {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  /* Планшет и выше: возвращаем двухколоночную раскладку хэдера */
-  .header {
-    min-height: 1024px; /* минимальная высота для планшета */
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr; /* верхняя строка растягивается, чтобы можно было прижать меню вниз */
-    row-gap: 45px; /* расстояние между строками вместо margin у subtitle */
-    grid-template-areas:
-      "menu menu"
-      "title title"
-      ". subtitle";
-  }
-
-  .footer {
-    padding: 20px;
-    min-height: 1024px; /* минимальная высота для планшета */
-  }
-
-  /* REC-метка: планшетная позиция */
+  /* Позиция REC на ширине 768px+ */
   .header__rec {
     top: 20px;
     right: 48px;
   }
 
-  /* Увеличенный размер заголовков */
+  /* Увеличенный размер крупных заголовков */
   .footer__hero-title,
   .header__hero-title {
     font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
   }
 
-  /* Меню темы: справа и внизу своей строки на планшете */
-  .header__theme-menu {
-    justify-content: flex-end; /* элементы внутри навигации справа */
-    justify-self: end; /* сам блок у правого края ячейки */
-    align-self: end; /* сам блок у нижнего края ячейки */
-    padding-right: 10px; /* внутренний отступ справа */
-    padding-bottom: 30px; /* внутренний отступ снизу */
-  }
-
-  /* Секции контента: 3-колоночная сетка */
+  /* Базовая 3-колоночная сетка секций */
   .content-section {
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 20px;
   }
 
-  /* H2 занимает первую колонку */
+  /* Заголовок H2 занимает первую колонку */
   .content-section__title {
     grid-column: 1;
   }
 
-  /* Остальной контент во 2-3 колонках */
+  /* Остальной контент во 2–3 колонках */
   .content-section__heading,
   .content-section__subheading,
   .content-section__text {
     grid-column: 2 / 4;
   }
 
-  /* Планшет: в section-prichiny H2 в левой колонке только в первой строке,
-     остальной контент под заголовком и на всю ширину (1–3 колонки) */
-  .section-prichiny .content-section__title {
-    grid-column: 1;
-    grid-row: 1; /* только первая строка */
-    align-self: start;
-  }
-
-  .section-prichiny .content-section__heading,
-  .section-prichiny .content-section__subheading,
-  .section-prichiny .content-section__text {
-    grid-column: 1 / 4; /* под заголовком на всю ширину секции */
-  }
-
-  /* Секция советов: специальная раскладка (планшет) */
-  .section-sovety .content-section__title {
+  /* Секция советов: постоянные правила для 768px+ */
+  .section-tips .content-section__title {
     grid-column: 1;
     grid-row: 1 / 3;
   }
 
-  .section-sovety__grid {
+  .section-tips__grid {
     grid-column: 2 / 4;
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: min-content;
   }
 
-  /* Внутри собственной сетки все элементы в первой колонке */
-  .section-sovety__grid > .content-section__heading,
-  .section-sovety__grid > .content-section__subheading,
-  .section-sovety__grid > .content-section__text {
+  .section-tips__grid>.content-section__heading,
+  .section-tips__grid>.content-section__subheading,
+  .section-tips__grid>.content-section__text {
     grid-column: 1;
   }
 
-  .section-sovety__grid
-    > .content-section__heading
-    + .content-section__subheading {
+  .section-tips__grid>.content-section__heading+.content-section__subheading {
     margin-top: 10px;
   }
 
-  /* Первая секция: специальная раскладка */
-  .section-pochemu-slozhno__grid {
+  /* Первая секция: общая раскладка для 768px+ */
+  .section-why-hard__grid {
     grid-column: 2 / 4;
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: min-content;
-    padding-left: 7px;
   }
 
-  .section-pochemu-slozhno__grid > .content-section__heading,
-  .section-pochemu-slozhno__grid > .content-section__text {
-    grid-column: 1;
-  }
+  /* Позиции элементов section-why-hard наследуются из 768+ */
 
-  /* На планшете: для section-prichiny используем базовую 3-колоночную сетку секций,
-     чтобы H2 был в своей левой колонке, а весь остальной контент — во 2–4 колонках.
-     Специальная 3×3 раскладка применяется только на десктопе (1024px+). */
-
-  /* Секция советов: специальная раскладка */
-  .section-sovety .content-section__title {
-    grid-column: 1;
-    grid-row: 1 / 3;
-    /* растягиваем на две строки */
-  }
-
-  .section-sovety__grid {
-    grid-column: 2 / 4;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: min-content;
-    padding-left: 7px;
-  }
-
-  /* Внутри собственной сетки все элементы в первой колонке */
-  .section-sovety__grid > .content-section__heading,
-  .section-sovety__grid > .content-section__subheading,
-  .section-sovety__grid > .content-section__text {
-    grid-column: 1;
-  }
-
-  .section-sovety__grid
-    > .content-section__heading
-    + .content-section__subheading {
-    margin-top: 10px;
-  }
-
-  /* Галерея: 6x6 сетка */
+  /* Галерея: сетка и базовые правила для 768px+ */
   .gallery {
     grid-template-columns: repeat(6, 1fr);
     gap: 20px;
@@ -684,27 +612,19 @@
     padding: 0 0 60px;
   }
 
-  /* Заголовок галереи занимает всю ширину первой строки */
   .main .gallery__title {
     grid-column: 1 / 7;
     grid-row: 1;
-    margin: 0; /* сбросить возможные внешние отступы от типографики */
+    margin: 0;
   }
 
-  .gallery__item {
-    width: 100%;
-    height: 100%;
-    max-height: 100%;
-  }
-
-  /* Любые дополнительные элементы внутри галереи (не заголовок и не изображение)
-     занимают всю ширину строки, чтобы не ломать раскладку карточек */
-  .gallery > :not(.gallery__title):not(.gallery__item) {
+  /* Размеры карточек галереи наследуются из 768+ */
+  .gallery> :not(.gallery__title):not(.gallery__item) {
     grid-column: 1 / 7;
     grid-row: auto;
   }
 
-  /* Специальные позиции изображений в галерее */
+  /* Позиции карточек галереи */
   .gallery__item_name_sunset {
     grid-column: 1 / 5;
     grid-row: 2 / 4;
@@ -729,16 +649,142 @@
     grid-column: 1 / 3;
     grid-row: 4 / 8;
   }
+
+  /* Секция причин: заголовок H2 в первой колонке, первая строка */
+  .section-distractions .content-section__title {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+/* ПЛАНШЕТНАЯ ВЕРСИЯ (768px - 1023px) */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Отступы .main наследуются из общего блока 768+ */
+
+  /* Планшет и выше: возвращаем двухколоночную раскладку хэдера */
+  .header {
+    min-height: 1024px;
+    /* минимальная высота для планшета */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    /* верхняя строка растягивается, чтобы можно было прижать меню вниз */
+    row-gap: 45px;
+    /* расстояние между строками вместо margin у subtitle */
+    grid-template-areas:
+      "menu menu"
+      "title title"
+      ". subtitle";
+  }
+
+  .footer {
+    padding: 20px;
+    min-height: 1024px;
+    /* минимальная высота для планшета */
+  }
+
+  /* Позиция REC наследуется из общего блока 768+ */
+
+  /* Размер заголовков наследуется из общего блока 768+ */
+
+  /* Меню темы: справа и внизу своей строки на планшете */
+  .header__theme-menu {
+    justify-content: flex-end;
+    /* элементы внутри навигации справа */
+    justify-self: end;
+    /* сам блок у правого края ячейки */
+    align-self: end;
+    /* сам блок у нижнего края ячейки */
+    padding-right: 10px;
+    /* внутренний отступ справа */
+    padding-bottom: 30px;
+    /* внутренний отступ снизу */
+  }
+
+  /* Базовая сетка секций наследуется из общего блока 768+ */
+
+  /* Позиция H2 наследуется из общего блока 768+ */
+
+  /* Планшет: в section-distractions H2 в левой колонке только в первой строке,
+     остальной контент под заголовком и на всю ширину (1–3 колонки) */
+  .section-distractions .content-section__title {
+    grid-column: 1;
+    /* заголовок в первой колонке для корректного переноса */
+    grid-row: 1;
+    /* только первая строка */
+    align-self: start;
+  }
+
+  .section-distractions .content-section__heading,
+  .section-distractions .content-section__subheading,
+  .section-distractions .content-section__text {
+    grid-column: 1 / 4;
+    /* под заголовком на всю ширину секции */
+  }
+
+  /* Секция советов: на планшете добавляем только отступ к внутренней сетке */
+  .section-tips__grid {
+    padding-left: 7px;
+  }
+
+  /* tablet: разметка для .section-distractions__grid задана ниже как внутренняя сетка */
+  /* Внутренняя сетка для секции причин (планшет):
+     H2 остаётся в левой колонке (см. правила выше),
+     контентная сетка располагается во 2–3 колонках, 2 колонки карточек */
+  .section-distractions__grid {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: 1fr;
+    /* планшет: карточки на всю ширину, одна колонка */
+    grid-auto-flow: row dense;
+  }
+
+  .section-distractions__item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: min-content;
+    align-content: start;
+  }
+
+  .section-distractions__item>.content-section__heading,
+  .section-distractions__item>.content-section__subheading,
+  .section-distractions__item>.content-section__text {
+    grid-column: 1;
+  }
+
+  /* Падение обратно в авто-раскладку, если элементы добавляются без .section-distractions__item */
+  .section-distractions__grid>.content-section__heading,
+  .section-distractions__grid>.content-section__subheading,
+  .section-distractions__grid>.content-section__text {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  /* Если элементы добавлены без обёртки .section-distractions__item,
+     заставим их занимать автоколонку с первой, не перескакивая на 2–3 */
+  .section-distractions__grid>.content-section__heading,
+  .section-distractions__grid>.content-section__subheading,
+  .section-distractions__grid>.content-section__text {
+    grid-column: auto;
+  }
+
+  /* Первая секция: специальная раскладка */
+  .section-why-hard__grid {
+    /* общие настройки сетки наследуются из 768+ */
+    padding-left: 7px;
+  }
+
+  .section-why-hard__grid>.content-section__heading,
+  .section-why-hard__grid>.content-section__text {
+    grid-column: 1;
+  }
+
+  /* На планшете: специальная приметка к раскладке причин — 1 колонка карточек */
 }
 
 /* ДЕСКТОПНАЯ ВЕРСИЯ (1024px+) */
 
 @media (min-width: 1024px) {
-  /* Большие отступы для десктопа */
-  .main {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
 
   /* Десктоп: двухколоночная раскладка хэдера */
   .header {
@@ -747,191 +793,66 @@
       "menu menu"
       "title title"
       ". subtitle";
+    row-gap: 10px;
   }
 
   .footer {
     padding: 20px;
   }
 
-  /* REC-метка: позиция на больших экранах */
-  .header__rec {
-    top: 20px;
-    right: 48px;
-  }
+  /* Десктоп: доп. правки tips */
 
-  /* Увеличенный размер заголовков */
-  .footer__hero-title,
-  .header__hero-title {
-    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-  }
-
-  /* Секции контента: 3-колоночная сетка */
-  .content-section {
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 20px;
-  }
-
-  /* H2 занимает первую колонку */
-  .content-section__title {
-    grid-column: 1;
-  }
-
-  /* Остальной контент во 2-3 колонках */
-  .content-section__heading,
-  .content-section__subheading,
-  .content-section__text {
-    grid-column: 2 / 4;
-  }
-
-  /* Секция советов: специальная раскладка (десктоп) */
-  .section-sovety .content-section__title {
-    grid-column: 1;
-    grid-row: 1 / 3; /* фиксируем область под H2 */
-  }
-
-  .section-sovety__grid {
-    grid-column: 2 / 4;
-    grid-row: 1; /* контентная часть стартует в первой строке правых колонок */
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: min-content;
-  }
-
-  /* Внутри собственной сетки элементы занимают первую колонку внутренней сетки */
-  .section-sovety__grid > .content-section__heading,
-  .section-sovety__grid > .content-section__subheading,
-  .section-sovety__grid > .content-section__text {
-    grid-column: 1;
-  }
-
-  /* H3 всегда стартует с первой строки внутренней сетки */
-  .section-sovety__grid > .content-section__heading {
+  .section-tips__grid {
+    /* базовые правила наследуются из 768+, на десктопе добавляем только grid-row */
     grid-row: 1;
   }
 
-  .section-sovety__grid
-    > .content-section__heading
-    + .content-section__subheading {
+  /* H3 стартует с первой строки — правило остаётся */
+  .section-tips__grid>.content-section__heading {
+    grid-row: 1;
+  }
+
+  .section-tips__grid>.content-section__heading+.content-section__subheading {
     margin-top: 10px;
   }
 
-  /* Первая секция: специальная раскладка */
-  .section-pochemu-slozhno__grid {
-    grid-column: 2 / 4;
+  /* Общая раскладка section-why-hard наследуется из 768+ */
+
+  .section-why-hard__grid>.content-section__heading,
+  .section-why-hard__grid>.content-section__text {
+    grid-column: 1;
+  }
+
+  /* Секция причин: заголовок в первой колонке, сетка карточек ниже и на всю ширину */
+  .section-distractions .content-section__title {
+    grid-column: 1;
+    /* десктоп: оставляем заголовок в колонке */
+    grid-row: 1;
+  }
+
+  /* Секция причин: внутренняя сетка (десктоп) — 3 колонки карточек */
+  .section-distractions__grid {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row dense;
+    gap: 20px;
+  }
+
+  .section-distractions__item {
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: min-content;
+    align-content: start;
   }
 
-  .section-pochemu-slozhno__grid > .content-section__heading,
-  .section-pochemu-slozhno__grid > .content-section__text {
+  .section-distractions__item>.content-section__heading,
+  .section-distractions__item>.content-section__subheading,
+  .section-distractions__item>.content-section__text {
     grid-column: 1;
   }
 
-  /* Секция причин: специальная 3x3 раскладка (только десктоп) */
-  .section-prichiny {
-    grid-auto-rows: auto;
-  }
-
-  .section-prichiny .content-section__title {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  /* 3 заголовка во второй строке */
-  .section-prichiny .content-section__heading_topic_mnogozadachnost {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .section-prichiny .content-section__heading_topic_eda {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .section-prichiny .content-section__heading_topic_gadzhety {
-    grid-column: 3;
-    grid-row: 2;
-  }
-
-  /* 3 параграфа в третьей строке */
-  .section-prichiny .content-section__text_topic_mnogozadachnost {
-    grid-column: 1;
-    grid-row: 3;
-  }
-
-  .section-prichiny .content-section__text_topic_eda {
-    grid-column: 2;
-    grid-row: 3;
-  }
-
-  .section-prichiny .content-section__text_topic_gadzhety {
-    grid-column: 3;
-    grid-row: 3;
-  }
-
-  /* Дополнительный контент в секции причин:
-     элементы без topic_* занимают всю ширину и переносятся на новые строки */
-  .section-prichiny .content-section__heading:not([class*="topic_"]),
-  .section-prichiny .content-section__text:not([class*="topic_"]) {
-    grid-column: 1 / 4;
-    grid-row: auto;
-  }
-
-  /* Галерея: 6x6 сетка для десктопа */
-  .gallery {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
-    grid-auto-flow: dense;
-    height: auto;
-    padding: 0 0 60px;
-  }
-
-  /* Заголовок галереи занимает всю ширину первой строки */
-  .main .gallery__title {
-    grid-column: 1 / 7;
-    grid-row: 1;
-    margin: 0; /* сбросить возможные внешние отступы от типографики */
-  }
-
-  .gallery__item {
-    width: 100%;
-    height: 100%;
-    max-height: 100%;
-  }
-
-  /* Любые дополнительные элементы внутри галереи (не заголовок и не изображение)
-     занимают всю ширину строки, чтобы не ломать раскладку карточек */
-  .gallery > :not(.gallery__title):not(.gallery__item) {
-    grid-column: 1 / 7;
-    grid-row: auto;
-  }
-
-  /* Специальные позиции изображений в галерее */
-  .gallery__item_name_sunset {
-    grid-column: 1 / 5;
-    grid-row: 2 / 4;
-  }
-
-  .gallery__item_name_ice-cream {
-    grid-column: 5 / 7;
-    grid-row: 2 / 6;
-  }
-
-  .gallery__item_name_books {
-    grid-column: 3 / 5;
-    grid-row: 4 / 6;
-  }
-
-  .gallery__item_name_street {
-    grid-column: 3 / 7;
-    grid-row: 6 / 8;
-  }
-
-  .gallery__item_name_tape {
-    grid-column: 1 / 3;
-    grid-row: 4 / 8;
-  }
+  /* Галерея наследуется из общего блока 768+ */
 
   /* Меню темы: по центру на десктопе */
   .header__theme-menu {
@@ -948,9 +869,9 @@
 }
 
 .header__hero-title {
-  margin: 10px 10px 10px -10px;
+  margin: 0px 10px 0px -10px;
 }
 
 .header__subtitle {
-  margin: 20px 10px 0 0;
+  margin: 15px 10px 0 0;
 }
