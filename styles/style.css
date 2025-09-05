@@ -424,30 +424,46 @@
       "menu"
       "title"
       "subtitle";
-    row-gap: 60px;
+    row-gap: 55px;
   }
 
   /* Унифицированные отступы между блоками на мобилке: 40px
      Повышаем специфичность, чтобы перебить базовые 60px */
   header.header {
-    margin-bottom: 45px;
+    margin-bottom: 40px;
   }
 
-  /* Все секции контента */
-  main.main .content-section,
-  .main .content-section {
-    margin-bottom: 35px;
+  /* Отступы между секциями (мобилка): отдельно для каждой секции. Толкаем секции вниз */
+  main.main .section-pochemu-slozhno,
+  .main .section-pochemu-slozhno {
+    margin-bottom: 28px;
+  }
+
+  main.main .section-prichiny,
+  .main .section-prichiny {
+    margin-bottom: 26px;
+  }
+
+  main.main .section-sovety,
+  .main .section-sovety {
+    margin-bottom: 25px;
+  }
+
+  main.main .gallery-section,
+  .main .gallery-section {
+    margin-bottom: 25px;
   }
 
   /* Меню в первой строке: прижато вправо и вниз своей ячейки */
   .header__theme-menu {
     justify-self: end;
     align-self: end;
+    padding-bottom: 11px;
   }
 
   /* Мобилка: расстояние между пунктами меню (селекторы тем) */
   .header__theme-menu-list {
-    gap: 15px;
+    gap: 13px;
   }
 
   /* Галерея: на мобилке уменьшаем межэлементный отступ до 10px */
@@ -472,7 +488,7 @@
 
   /* Заголовки секций: уменьшаем нижний внутренний отступ до 10px на мобилке */
   .main h2 {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
   }
 
   /* Контентные секции на мобилке: одна колонка, без внутреннего нижнего отступа */
@@ -598,18 +614,13 @@
     margin-top: 10px;
   }
 
-  /* Ограничение ширины текста правым внутренним отступом в 1-й и 3-й секциях */
-  .section-pochemu-slozhno__grid > .content-section__text,
-  .section-sovety__grid > .content-section__text {
-    padding-right: 10px;
-  }
-
   /* Первая секция: специальная раскладка */
   .section-pochemu-slozhno__grid {
     grid-column: 2 / 4;
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: min-content;
+    padding-left: 7px;
   }
 
   .section-pochemu-slozhno__grid>.content-section__heading,
@@ -633,6 +644,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: min-content;
+    padding-left: 7px;
   }
 
   /* Внутри собственной сетки все элементы в первой колонке */
