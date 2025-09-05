@@ -50,8 +50,8 @@
 }
 
 /* Модификатор: альтернативное начертание */
-.heading_variant_alt { 
-  font-weight: 400; 
+.heading_variant_alt {
+  font-weight: 400;
 }
 
 /* АДАПТИВНЫЕ ОТСТУПЫ ДЕКОРАТИВНЫХ УГОЛКОВ */
@@ -62,13 +62,12 @@
     top: 10px;
     right: 10px;
   }
-  
+
   .decorated-corners::after {
     bottom: 10px;
     left: 10px;
   }
 }
-
 
 /* БАЗОВЫЕ СТИЛИ ОСНОВНОГО КОНТЕНТА */
 
@@ -204,9 +203,11 @@
 }
 
 .header__theme-menu-button:hover:not([disabled]) {
-  border-color: color-mix(in srgb,
-      var(--menu-button-border-color) 40%,
-      transparent);
+  border-color: color-mix(
+    in srgb,
+    var(--menu-button-border-color) 40%,
+    transparent
+  );
 }
 
 .header__theme-menu-button:focus {
@@ -344,7 +345,9 @@
   /* на мобильной сбрасываем грид */
 }
 
-.section-sovety__grid>.content-section__heading+.content-section__subheading {
+.section-sovety__grid
+  > .content-section__heading
+  + .content-section__subheading {
   margin-top: 10px;
 }
 
@@ -414,7 +417,6 @@
 
 /* МОБИЛЬНАЯ ВЕРСИЯ (до 767px) */
 @media (max-width: 767px) {
-  
   .header {
     min-height: 668px; /* минимальная высота для мобильного хедера */
     display: grid;
@@ -472,12 +474,24 @@
   }
 
   /* Фиксируем порядок элементов в галерее на мобилке */
-  .gallery__title { grid-row: 1; }
-  .gallery__item_name_sunset { grid-row: 2; }
-  .gallery__item_name_ice-cream { grid-row: 3; }
-  .gallery__item_name_tape { grid-row: 4; }
-  .gallery__item_name_books { grid-row: 5; }
-  .gallery__item_name_street { grid-row: 6; }
+  .gallery__title {
+    grid-row: 1;
+  }
+  .gallery__item_name_sunset {
+    grid-row: 2;
+  }
+  .gallery__item_name_ice-cream {
+    grid-row: 3;
+  }
+  .gallery__item_name_tape {
+    grid-row: 4;
+  }
+  .gallery__item_name_books {
+    grid-row: 5;
+  }
+  .gallery__item_name_street {
+    grid-row: 6;
+  }
 
   /* Сброс внешних отступов и уменьшение межстрочного интервала у главного заголовка на мобилке (повышенная специфичность) */
   header .header__hero-title {
@@ -513,7 +527,6 @@
 /* ПЛАНШЕТНАЯ ВЕРСИЯ (768px - 1023px) */
 
 @media (min-width: 768px) and (max-width: 1023px) {
-
   /* Увеличенные отступы для планшета */
   .main {
     padding-left: 20px;
@@ -552,10 +565,10 @@
   /* Меню темы: справа и внизу своей строки на планшете */
   .header__theme-menu {
     justify-content: flex-end; /* элементы внутри навигации справа */
-    justify-self: end;        /* сам блок у правого края ячейки */
-    align-self: end;          /* сам блок у нижнего края ячейки */
-    padding-right: 10px;      /* внутренний отступ справа */
-    padding-bottom: 30px;     /* внутренний отступ снизу */
+    justify-self: end; /* сам блок у правого края ячейки */
+    align-self: end; /* сам блок у нижнего края ячейки */
+    padding-right: 10px; /* внутренний отступ справа */
+    padding-bottom: 30px; /* внутренний отступ снизу */
   }
 
   /* Секции контента: 3-колоночная сетка */
@@ -610,7 +623,9 @@
     grid-column: 1;
   }
 
-  .section-sovety__grid>.content-section__heading+.content-section__subheading {
+  .section-sovety__grid
+    > .content-section__heading
+    + .content-section__subheading {
     margin-top: 10px;
   }
 
@@ -623,8 +638,8 @@
     padding-left: 7px;
   }
 
-  .section-pochemu-slozhno__grid>.content-section__heading,
-  .section-pochemu-slozhno__grid>.content-section__text {
+  .section-pochemu-slozhno__grid > .content-section__heading,
+  .section-pochemu-slozhno__grid > .content-section__text {
     grid-column: 1;
   }
 
@@ -654,7 +669,9 @@
     grid-column: 1;
   }
 
-  .section-sovety__grid>.content-section__heading+.content-section__subheading {
+  .section-sovety__grid
+    > .content-section__heading
+    + .content-section__subheading {
     margin-top: 10px;
   }
 
@@ -710,7 +727,6 @@
 /* ДЕСКТОПНАЯ ВЕРСИЯ (1024px+) */
 
 @media (min-width: 1024px) {
-
   /* Большие отступы для десктопа */
   .main {
     padding-left: 20px;
@@ -786,7 +802,9 @@
     grid-row: 1;
   }
 
-  .section-sovety__grid > .content-section__heading + .content-section__subheading {
+  .section-sovety__grid
+    > .content-section__heading
+    + .content-section__subheading {
     margin-top: 10px;
   }
 
@@ -798,8 +816,8 @@
     grid-auto-rows: min-content;
   }
 
-  .section-pochemu-slozhno__grid>.content-section__heading,
-  .section-pochemu-slozhno__grid>.content-section__text {
+  .section-pochemu-slozhno__grid > .content-section__heading,
+  .section-pochemu-slozhno__grid > .content-section__text {
     grid-column: 1;
   }
 
